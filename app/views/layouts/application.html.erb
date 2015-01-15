@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IdeaBoxRails</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+<% end %>
+
+<%= yield %>
+
+<br />
+<br />
+<hr />
+<footer>
+  <%= button_to "Logout", {:controller => :sessions, :action => :destroy}, :method => :destroy%>
+</footer>
+
+</body>
+</html>
