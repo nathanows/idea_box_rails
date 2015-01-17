@@ -8,9 +8,19 @@
       <li>Title: <%= idea.title %></li>
       <li>Description: <%= idea.description %></li>
       <li>Category:  <%= idea.category.name %> </li>
+      <li>
+        <%= link_to('edit', edit_idea_path(idea)) %>
+        <%= link_to('delete', idea_path(idea), :method => 'delete') %>
+      </li>
   <% end %>
 </ul>
+<br />
 <div id="new_idea">
   <%= render partial: 'shared/idea_form', locals: {idea: @user.ideas.new,
                                                    user_id: @user.id} %>
 </div>
+<% if current_user.admin? %>
+  <div>
+    <%= link_to 'Admin Page', admin_path %>
+  </div>
+<% end %>

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
+  get '/admin', to: 'users#admin', as: 'admin'
 
   resources :users, :ideas
 
