@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   post '/logout', to: 'sessions#destroy'
   get '/admin', to: 'users#admin', as: 'admin'
 
-  resources :users, :ideas
+  resources :users, :ideas, :categories
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

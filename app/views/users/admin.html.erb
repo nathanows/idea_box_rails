@@ -1,3 +1,19 @@
 <div id="admin_title">
   <h1>Admin Page</h1>
 </div>
+
+<div id="categories">
+  <div id="category_list">
+    <ul>
+      <% Category.all.each do |category| %>
+        <li id="<%= category.name %>_category">Category: <%= category.name %>  
+                      <%= link_to('edit', edit_category_path(category))  %>  
+                      <%= link_to('delete', category_path(category), :method => 'delete') %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div id="new_category">
+    <%= render partial: 'shared/category_form', locals: {category: Category.new} %>
+  </div>
+</div>

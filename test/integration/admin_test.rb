@@ -5,7 +5,6 @@ class UserLoginTest < ActionDispatch::IntegrationTest
   attr_reader :user
 
   def setup
-    @admin = User.create(username: "admin", password: "admin", role: 'admin')
     @user = User.create(username: "user", password: "user")
     visit root_url
   end
@@ -29,7 +28,26 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     end
   end
 
-  #test 'an admin can create categories' do
-    
-  #end
+  test 'an admin can create categories' do
+    admin_user = User.create(username: "admin_user", password: "password", password_confirmation: "password", role: "admin")
+    ApplicationController.any_instance.stubs(:current_user).returns(admin_user)
+    visit admin_path
+    fill_in "category_name", with: "snoop"
+    click_link_or_button "Add Category"
+    within("#category_list") do
+      assert page.has_content?("snoop")
+    end
+  end
+
+  test 'an admin can delete categories' do
+    admin_user = User.create(username: "admin_user", password: "password", password_confirmation: "password", role: "admin")
+    Category.create(name: "ghostface")
+    ApplicationController.any_instance.stubs(:current_user).returns(admin_user)
+    visit admin_path
+    assert 1, Category.all.count
+    within("#ghostface_category") do
+      click_link_or_button "delete"
+    end
+    assert 0, Category.all.count
+  end
 end
