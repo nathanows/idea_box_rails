@@ -62,4 +62,8 @@ class AdminTest < ActionDispatch::IntegrationTest
       assert page.has_content?("new")
     end
   end
+
+  test 'an admin can add an image' do
+
+  end
 end

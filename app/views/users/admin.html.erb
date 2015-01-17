@@ -17,3 +17,26 @@
     <%= render partial: 'shared/category_form', locals: {category: Category.new} %>
   </div>
 </div>
+
+<br />
+<br />
+<hr />
+<br />
+<br />
+
+<div id='images'>
+  <div id="new_image">
+    <%= render partial: 'shared/image_form', locals: {image: Image.new} %>
+  </div>
+  <div id="image_list">
+    <ul>
+      <% Image.all.each do |image| %>
+        <li id="<%= image.title %>_image">
+          Image: <%= image.title %>     
+          <%= link_to('delete', image_path(image), :method => 'delete') %>
+        </li>
+        <li><%= image_tag image.img.url(:medium) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
