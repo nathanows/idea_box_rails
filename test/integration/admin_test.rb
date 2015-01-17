@@ -2,12 +2,6 @@ require 'test_helper'
 
 class UserLoginTest < ActionDispatch::IntegrationTest
   include Capybara::DSL
-  attr_reader :user
-
-  def setup
-    @user = User.create(username: "user", password: "user")
-    visit root_url
-  end
 
   test 'an admin can go to the Admin page' do
     User.create(username: "admin", password: "password", role: 'admin')
