@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UserLoginTest < ActionDispatch::IntegrationTest
+class AdminTest < ActionDispatch::IntegrationTest
   include Capybara::DSL
 
   test 'an admin can go to the Admin page' do
