@@ -50,4 +50,22 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     end
     assert 0, Category.all.count
   end
+
+  test 'an admin can edit categories' do
+    admin_user = User.create(username: "admin_user", password: "password", password_confirmation: "password", role: "admin")
+    Category.create(name: "original")
+    ApplicationController.any_instance.stubs(:current_user).returns(admin_user)
+    visit admin_path
+    within("#category_list") do
+      assert page.has_content?("original")
+    end
+    within("#original_category") do
+      click_link_or_button "edit"
+    end
+    fill_in "category_name", with: "new"
+    click_link_or_button "Update"
+    within("#category_list") do
+      assert page.has_content?("new")
+    end
+  end
 end
