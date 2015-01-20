@@ -1,11 +1,8 @@
-<%= form_for(idea) do |f| %>
-  <%= f.label          :title %>
+<%= bootstrap_form_for(idea, :layout => :horizontal) do |f| %>
   <%= f.text_field     :title %>
-  <%= f.label          :description %>
   <%= f.text_area      :description %>
-  <%= f.label          :category %>
   <%= f.collection_select(:category_id, Category.all, :id, :name) %>
-  <%= f.collection_select(:idea, :image_ids, Image.all, :id, :title) %>
+  <%= f.collection_select(:images, Image.all, :id, :title, {}, {:multiple => true}) %>
   <%= f.hidden_field   :user_id %>
   <%= f.submit         "Create Idea" %>
 <% end %>

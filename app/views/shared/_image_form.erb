@@ -1,8 +1,5 @@
-<%= form_for image, :url => images_path, :html => { :multipart => true  } do |f| %>
-  <%= f.label          :title %>
-  <%= f.text_field     :title %>
-  <%= f.label          :img %>
+<%= bootstrap_form_for image, layout: :horizontal, :url => images_path, :html => { :multipart => true  } do |f| %>
+  <%= f.text_field     :title, control_col: "col-sm-6"%>
   <%= f.file_field     :img %>
-
   <%= f.submit         "Add Image" %>
 <% end %>

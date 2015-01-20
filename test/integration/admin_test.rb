@@ -15,6 +15,7 @@ class AdminTest < ActionDispatch::IntegrationTest
   end
 
   test 'a default user cannot access the Admin page' do
+    user = User.create(username: "default", password: "password", password_confirmation: "password")
     ApplicationController.any_instance.stubs(:current_user).returns(user)
     visit admin_path
     within("#flash_alert") do

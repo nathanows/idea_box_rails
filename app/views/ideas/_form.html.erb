@@ -5,6 +5,7 @@
   <%= f.text_area      :description %>
   <%= f.label          :category %>
   <%= f.collection_select(:category_id, Category.all, :id, :name) %>
+  <%= f.collection_select(:images, Image.all, :id, :title, {}, {:multiple => true}) %>
   <%= f.hidden_field   :user_id %>
   <%= f.submit         "Update Idea" %>
 <% end %>
